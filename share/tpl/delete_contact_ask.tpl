@@ -1,7 +1,7 @@
 [% INCLUDE includes/header.tpl %]
 
 <div id="main">
-    <h1>[% "Deleting User: [_1] ([_2])" l10n(name,contact_id) %]</h1>
+    <h1>[% "Deleting User: [_1] ([_2])" | l10n(name,contact_id) %]</h1>
     
     If you really want to delete this user enter the group password below and
     submit the form.
