@@ -1244,9 +1244,14 @@ sub _render_delete_contact {
 
     return unless $request->{'contact_id'};
 
-    my $sql = 'DELETE FROM contacts WHERE id = ? ORDER BY id LIMIT 1';
+    my $sql = 'DELETE FROM contacts WHERE id = ?';
     my $sth = $self->dbh()->prepare($sql);
-    $sth->execute($request->{'contact_id'});
+    if(!$sth) {
+        $self->logger()->log( message => 'Failed to prepare statement from SQL '.$sql.' w/ error: '.$self->dbh()->errstr(), level => 'error', );
+    }
+    if(!$sth->execute($request->{'contact_id'})) {
+        $self->logger()->log( message => 'Failed to execute statement w/ error: '.$sth->errstr(), level => 'error', );
+    }
     $sth->finish();
 
     return [ 301, [ 'Location', '?rm=overview&group_id='.$request->{'group_id'} ], [] ];
