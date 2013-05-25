@@ -116,6 +116,34 @@ __END__
 
 =head1 NAME
 
-App::Standby - Baseclass
+App::Standby - Managing on-call rotation and notification queues
+
+=head1 DESCRIPTION
+
+This distribution provides a small Plack webapp which helps with managing on-call rotations
+and notification queues. It allows you to manage several different queues from
+on place. It is easily extendible by plugins which can talk to virtually API
+endpoint to update a queue or a contact.
+
+Most organizations have at least one big monitoring system (like Nagios or Zabbix) and
+at least one external service level monitoring and other means of notification,
+If you don't want to pass around a shared on-call mobile you have to remember to update all
+those services when the one on duty changes. This app will help you with that.
+
+It allows you to manage several groups with their own queues and update each
+groups external services with just one click.
+
+=head1 SETUP
+
+This app can be run as CGI or from within an PSGI runtime like Starman.
+
+=head1 CONFIGURATION
+
+This app doesn't need any configuration, unless you want to change the
+path to the SQLite database.
+
+=head1 PLUGINS
+
+Have a look at the examples directory for some example plugins.
 
 =cut

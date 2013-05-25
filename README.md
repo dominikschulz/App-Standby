@@ -7,7 +7,12 @@ able to handle several groups of on-call personel and provides
 an extensible plugin mechanism to connect it to virtually any
 remote service which provides some kind of API.
 
-It is designed to work nicely with Monitoring::Spooler.
+Please also look at Monitoring::Spooler which is an external
+notification queue for virtually any monitoring application
+which support external notification scripts.
+
+If you are using Zabbix Zabbix::Reporter may be also worth a
+look, it's a handy dashboard for Zabbix.
 
 ## Installation
 
@@ -31,4 +36,5 @@ make install
 
 ## Documentation
 
-Please see perldoc App::Standby.
+Please see perldoc App::Standby. Setup and configuration is covered there.
+
