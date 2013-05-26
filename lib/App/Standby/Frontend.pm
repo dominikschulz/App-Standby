@@ -90,7 +90,7 @@ sub _init_config {
     my $self = shift;
 
     my $Config = Config::Yak::->new({
-        'locations'     => [qw(standby-mgm.conf /etc/standby-mgm)],
+        'locations'     => [qw(conf/standby-mgm.conf /etc/standby-mgm)],
     });
 
     return $Config;
@@ -484,6 +484,9 @@ sub run {
     elsif ( $request->{'rm'} eq 'update_group_service' && $request->{'gs_id'} ) {
         return $self->_render_update_service($request);
     }
+    elsif ( $request->{'rm'} eq 'delete_group_service_ask' && $request->{'gs_id'} ) {
+        return $self->_render_delete_service_ask($request);
+    }
     elsif ( $request->{'rm'} eq 'delete_group_service' && $request->{'gs_id'} ) {
         return $self->_render_delete_service($request);
     }
@@ -757,6 +760,7 @@ sub _render_update_service {
     if(!$sth->execute($request->{'value'},$request->{'config_id'})) {
         $self->logger()->log( message => 'Failed to execute stmt w/ error: '.$sth->errstr, level => 'error', );
     }
+    $sth->finish();
 
     return [ 301, [ 'Location', '?rm=overview&group_id='.$request->{'group_id'} ], [] ];
 }
@@ -789,9 +793,14 @@ sub _render_delete_service {
         return [ 301, [ 'Location', '?rm=overview&group_id='.$request->{'group_id'}.'&msg=Invalid%20Key' ], [] ];
     }
 
-    my $sql = 'DELETE FROM group_services WHERE id = ? ORDER BY id LIMIT 1';
+    my $sql = 'DELETE FROM group_services WHERE id = ?';
     my $sth = $self->dbh()->prepare($sql);
-    $sth->execute($request->{'gs_id'});
+    if(!$sth) {
+      $self->logger()->log( message => 'Failed to prepare SQL '.$sql.' w/ error: '.$self->dbh()->errstr, level => 'error', );
+    }
+    if(!$sth->execute($request->{'gs_id'})) {
+      $self->logger()->log( message => 'Failed to execute stmt w/ error: '.$sth->errstr, level => 'error', );
+    }
     $sth->finish();
 
     return [ 301, [ 'Location', '?rm=overview&group_id='.$request->{'group_id'} ], [] ];
@@ -938,7 +947,7 @@ sub _render_delete_config {
         return [ 301, [ 'Location', '?rm=overview&group_id='.$request->{'group_id'}.'&msg=Invalid%20Key' ], [] ];
     }
 
-    my $sql = 'DELETE FROM config WHERE id = ? ORDER BY id LIMIT 1';
+    my $sql = 'DELETE FROM config WHERE id = ?';
     my $sth = $self->dbh()->prepare($sql);
     $sth->execute($request->{'config_id'});
     $sth->finish();
@@ -1469,3 +1478,4 @@ __END__
 App::Standby::Frontend - Plack based web frontend for App::Standby
 
 =cut
+

@@ -18,7 +18,7 @@
 		    <td><a href="?rm=edit_group_service&gs_id=[% service.id %]">[% service.name %]</a></td>
 		    <td>[% service.desc %]</td>
 		    <td>[% service.class %]</td>
-		    <td><a href="?rm=delete_group_service&gs_id=[% service.id %]">del</a></td>
+		    <td><a href="?rm=delete_group_service_ask&gs_id=[% service.id %]">del</a></td>
 		</tr>
 	    [% IF loop.last %]
 		</tbody>

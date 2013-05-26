@@ -137,13 +137,64 @@ groups external services with just one click.
 
 This app can be run as CGI or from within an PSGI runtime like Starman.
 
+It needs not runtime configuration unless you want to change the path to the SQLite
+database file.
+
+You need to bootstrap the app by creating the first group like this:
+   standby-mgm.pl bootstrap -nNewGroupName -kNewGroupKey
+
 =head1 CONFIGURATION
 
-This app doesn't need any configuration, unless you want to change the
-path to the SQLite database.
+This section provides an example of a complete configuration using dummy values for names,
+phone numbers, URLs and the like.
+
+=head2 SERVICES
+
+In order for this app to do anything there must be two things in the database: users and services.
+This section will show you how to create the later.
+
+First select services and open up the new service dialog. Enter a short name for this service.
+Remember it must be all lowercase alphanumerics since it's going to be used as a prefix for the
+configuration values later. The description can be anything. Select the appropriate class and
+enter the group password you've dedfined when bootstrapping the service.
+
+Choose class HTTP for a simple endpoint which just gets the whole ordered user list as a JSON
+string. Chosse MS for a Monitoring::Spooler endpoint and Pingdom if you have an Pingdom account.
+
+Add as many services as necessary.
+
+Next select config from the menu and add new config items. For each service at least one. The
+HTTP service need an endpoint, so if the HTTP service was called simple then the config item
+for the endpoint must be called simple_endpoint and contain something like http://simple.domain/api/.
+
+For any pingdom service there must be at least four config items. The necessary items are apikey,
+username, password and contact_id. The last one may be given multiple times to update
+multiple Pingdom contacts in one account. If your service is called pingdom the keys would be
+called pingdom_apikey, pingdom_username, pingdom_password and pingdom_contact_id.
+
+The MS service class also needs only an endpoint.
+
+=head2 CONTACTS
+
+To be able to notify someone you must add some contacts. Since the whole point of this app
+is to help with managing changing on call rotations you should create more than one contact.
+
+Create at least two contacts. The name may be anything but you should know who it is refering to.
+The cellphone number should be in normalized international format (+<countryprefix><areaprefix>
+<extension>). Again, enter the group key to authenticate yourself.
+
+After creation contacts are disabled and won't participate in any rotation, so be sure to enable
+some users (usually all).
+
+Some services may need additional configuration per users, so you can store additional config
+under each user.
+
+Now you need to change the notification order at least once to make sure all remote services
+are updated. This happens only when the order is changed.
 
 =head1 PLUGINS
 
 Have a look at the examples directory for some example plugins.
 
 =cut
+

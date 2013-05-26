@@ -21,7 +21,7 @@
 	    
 	    <label for="name">
 		[% "Name" | l10n %]:
-		<span class="small"></span>
+		<span class="small">Use lowercase alphanumerics only. Used as config prefix.</span>
 	    </label>
 	    <input type="text" name="name" value="[% name %]" />
 	    

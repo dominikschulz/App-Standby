@@ -62,7 +62,7 @@ sub _init_config {
     my $self = shift;
 
     my $Config = Config::Yak::->new({
-        'locations'     => [qw(standby-mgm.conf /etc/standby)],
+        'locations'     => [qw(conf/standby-mgm.conf /etc/standby-mgm)],
     });
 
     return $Config;
