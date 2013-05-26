@@ -1,6 +1,7 @@
 [% INCLUDE includes/header.tpl %]
 
-<div id="main">
+<div class="container">
+
     <h1>[% "Deleting Group: [_1]" | l10n(group_id) %]</h1>
     
     [% "If you really want to delete this group enter the group password below and

@@ -1,18 +1,5 @@
-    <footer>
-	<a href="[% product_url %]?version=[% version %]" target="_blank">[% product %] [% version %]</a>
-	&nbsp;|&nbsp;
-	<a href="?rm=overview">[% "Return to Overview" | l10n %]</a>
-    </footer>
-  </div> <!--! end of #container -->
-
-  <!-- Javascript at the bottom for fast page loading -->
-  <script type="text/javascript" language="javascript" src="[% media_prefix %]/js/libs/jquery-1.5.1.js?v=1"></script>
-  <script type="text/javascript" language="javascript" src="[% media_prefix %]/js/libs/jquery-ui-1.8.12.custom.js?v=1"></script>
-  <script type="text/javascript" language="javascript" src="[% media_prefix %]/js/libs/jquery.dataTables.js?v=1"></script>
-  
-  <!-- scripts concatenated and minified via ant build script-->
-  <!-- <script src="[% media_prefix %]/js/plugins.js"></script> -->
-  <script type="text/javascript" language="javascript" src="[% media_prefix %]/js/script.js?v=1"></script>
+  <script src="js/jquery-2.0.1.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
   <!-- end concatenated and minified scripts-->
 	[% FOREACH message IN messages %]
 	[% IF loop.first %]

@@ -1,8 +1,9 @@
 [% INCLUDE includes/header.tpl %]
 
+<div class="container">
+
 <h1>[% "Adding Config for User #[_1]" | l10n(contact_id) %]</h1>
 
-<div id="main">
     <div class="forms">
 	<form method="POST" action="">
 	    <input type="hidden" name="rm" value="insert_config_contacts" />

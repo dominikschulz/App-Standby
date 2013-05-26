@@ -1,8 +1,9 @@
 [% INCLUDE includes/header.tpl %]
 
+<div class="container">
+
 <h1>[% "Editing Config Item: [_1] for User #[_2]" | l10n(key,contact_id) %]</h1>
 
-<div id="main">
     <div class="forms">
         <form method="POST" action="">
             <input type="hidden" name="rm" value="update_config_contacts" />

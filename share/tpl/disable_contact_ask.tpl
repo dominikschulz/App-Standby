@@ -1,6 +1,7 @@
 [% INCLUDE includes/header.tpl %]
 
-<div id="main">
+<div class="container">
+
     <h1>[% "Disabling User: [_1] ([_2])" | l10n(name,contact_id) %]</h1>
     
     [% "If you really want to disable this user enter the group password below and

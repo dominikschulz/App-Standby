@@ -1,8 +1,9 @@
 [% INCLUDE includes/header.tpl %]
 
+<div class="container">
+
 <h1>[% "Editing Group [_1] ([_2])" | l10n(group_name,group_id) %]</h1>
 
-<div id="main">
     <div class="forms">
         <form method="POST" action="">
             <input type="hidden" name="rm" value="update_group" />

@@ -1449,7 +1449,7 @@ sub _render_overview {
             'services' => $services_ref,
         },
         \$body,
-    );
+    ) or return [ 500, [ 'Content-Type', 'text/plain'], [$self->tt()->error()]];
     return [ 200, [ 'Content-Type', 'text/html'], [$body]];
 }
 

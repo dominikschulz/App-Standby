@@ -1,11 +1,11 @@
 [% INCLUDE includes/header.tpl %]
 
+<div class="container">
 <h1>[% "Enabling User: [_1] ([_2])" | l10n(name,contact_id) %]</h1>
 
 [% "If you really want to enable this user enter the group password below and
 submit the form." | l10n %]
 
-<div id="main">
     <div class="forms">
         <form method="POST" action="">
             <input type="hidden" name="rm" value="enable_contact" />

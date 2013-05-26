@@ -1,8 +1,9 @@
 [% INCLUDE includes/header.tpl %]
 
+<div class="container">
+
 <h1>[% "Editing Config: [_1] for Group #[_2]" | l10n(key,group_id) %]</h1>
 
-<div id="main">
     <div class="forms">
         <form method="POST" action="">
             <input type="hidden" name="rm" value="update_config" />

@@ -1,9 +1,12 @@
 [% INCLUDE includes/header.tpl %]
 
+<div class="container">
+
 	<h1>[% "Configuration for group [_1]" | l10n(group_name) %]</h1>
+   <p>
 	[% FOREACH line IN config %]
 	    [% IF loop.first %]
-	    <table class="datatable">
+	    <table class="table table-striped">
 		<thead>
 		    <tr>
 			<th>[% "Key" | l10n %]</th>
@@ -24,8 +27,10 @@
 	    </table>
 	    [% END %]
 	[% END %]
-	<a href="?rm=add_config&group_id=[% group_id %]">[% "Add new config item" | l10n %]</a><br />
+	<a class="btn" href="?rm=add_config&group_id=[% group_id %]">[% "Add new config item" | l10n %]</a><br />
 	[% "This section lists all serice specific settings for this group." | l10n %]
-	<hr />
-	
+	</p>
+
+</div><!-- /container -->
+
 [% INCLUDE includes/footer.tpl %]
