@@ -48,8 +48,12 @@ test_psgi $app, sub {
     is($res->code, 200, 'Got expected content');
 
     # overview works, bootstraped group exists
-    $res = $cb->(GET '/?rm=overview&group_id=1',);
-    like($res->content, qr/Current notification order for Group Test/, 'Group test exists');
+    $res = $cb->(GET '/?rm=overview',);
+   like($res->content, qr/Current order/, 'Overview is displayed');
+
+   # manage groups works
+   $res = $cb->(GET '/?rm=list_groups',);
+   like($res->content, qr/Groups configured/, 'Group page is displayed');
 
     # adding contact fails w/o group key
     $res = $cb->(POST '/', [
@@ -111,3 +115,4 @@ test_psgi $app, sub {
 };
 
 done_testing();
+
