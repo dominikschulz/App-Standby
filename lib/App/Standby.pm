@@ -172,7 +172,8 @@ username, password and contact_id. The last one may be given multiple times to u
 multiple Pingdom contacts in one account. If your service is called pingdom the keys would be
 called pingdom_apikey, pingdom_username, pingdom_password and pingdom_contact_id.
 
-The MS service class also needs only an endpoint.
+The MS service class needs an endpoint and a group id (name_group_id) which is used
+to update the appropriate group in the MS DB.
 
 =head2 CONTACTS
 
