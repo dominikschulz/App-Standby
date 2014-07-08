@@ -1,5 +1,8 @@
 Revision history for App-Standby
 
+0.04    2014-07-08
+        Improve docs.
+
 0.03    2013-05-31
         Add missing dependency on DBD::SQLite
 
